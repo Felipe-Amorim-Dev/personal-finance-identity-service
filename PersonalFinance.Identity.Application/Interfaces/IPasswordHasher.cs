@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalFinance.Identity.Domain.Interfaces
+namespace PersonalFinance.Identity.Application.Interfaces
 {
     public interface IPasswordHasher
     {
         string Hash(string password);
-
         bool Verify(string password, string passwordHash);
     }
 }

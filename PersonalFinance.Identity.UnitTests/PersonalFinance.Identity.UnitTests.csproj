@@ -15,7 +15,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\PersonalFinance.Identity.Application\PersonalFinance.Identity.Application.csproj" />
+    <ProjectReference Include="..\PersonalFinance.Identity.Domain\PersonalFinance.Identity.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\" />
+    <Folder Include="Application\" />
   </ItemGroup>
 
 </Project>

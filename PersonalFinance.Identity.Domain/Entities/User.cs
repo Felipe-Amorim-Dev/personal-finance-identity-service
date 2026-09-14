@@ -9,15 +9,19 @@ namespace PersonalFinance.Identity.Domain.Entities
     public class User
     {
         public Guid Id { get; private set; }
-        public string Nome { get; private set; }
-        public string Sobrenome { get; private set; }
+        public string Nome { get; private set; } = null!;
+        public string Sobrenome { get; private set; } = null!;
         public DateTime DataNascimento { get; private set; }
-        public string Email { get; private set; }
-        public string PasswordHash { get; private set; }
+        public string Email { get; private set; } = null!;
+        public string PasswordHash { get; private set; } = null!;
         public bool IsActive { get; private set; }
-        public DateTime CreatedAt { get; private set; }
+        public DateTime CreatedAt { get; private set; } 
         public DateTime? UpdatedAt { get; private set; }
-        public Endereco Endereco { get; private set; }
+        public Endereco Endereco { get; private set; } = null!;
+
+        private User()
+        {
+        }
 
         public User(string nome, string sobrenome, DateTime dataNascimento, string email, string passwordHash, Endereco endereco)
         {

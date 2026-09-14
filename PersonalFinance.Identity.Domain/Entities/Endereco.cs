@@ -9,14 +9,14 @@ namespace PersonalFinance.Identity.Domain.Entities
     public class Endereco
     {
         public Guid Id { get; private set; }
-        public string Logradouro { get; private set; }
-        public string Numero { get; private set; }
-        public string Complemento { get; private set; }
-        public string Bairro { get; private set; }
-        public string Cidade { get; private set; }
-        public string Estado { get; private set; }
-        public string Cep { get; private set; }
-        public string Pais { get; private set; }
+        public string Logradouro { get; private set; } = null!;
+        public string Numero { get; private set; } = null!;
+        public string? Complemento { get; private set; }
+        public string Bairro { get; private set; } = null!;
+        public string Cidade { get; private set; } = null!;
+        public string Estado { get; private set; } = null!;
+        public string Cep { get; private set; } = null!;
+        public string Pais { get; private set; } = null!;
         public DateTime CreatedAt { get; private set; }
         public DateTime? UpdatedAt { get; private set; }
 
@@ -24,7 +24,7 @@ namespace PersonalFinance.Identity.Domain.Entities
         {
         }
 
-        public Endereco(string logradouro, string numero, string complemento, string bairro, string cidade, string estado, string cep, string pais)
+        public Endereco(string logradouro, string numero, string? complemento, string bairro, string cidade, string estado, string cep, string pais)
         {
             Id = Guid.NewGuid();
             Logradouro = logradouro;

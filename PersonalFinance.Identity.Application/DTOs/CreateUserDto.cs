@@ -8,11 +8,11 @@ namespace PersonalFinance.Identity.Application.DTOs
 {
     public class CreateUserDto
     {
-        public string Nome { get; set; }
-        public string Sobrenome { get; set; }
+        public string Nome { get; set; } = null!;
+        public string Sobrenome { get; set; } = null!;
         public DateTime DataNascimento { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public EnderecoDto Endereco { get; set; }
+        public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
+        public EnderecoDto Endereco { get; set; } = null!;
     }
 }

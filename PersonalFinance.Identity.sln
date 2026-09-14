@@ -1,9 +1,33 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.Api", "PersonalFinance.Identity.Api\PersonalFinance.Identity.Api.csproj", "{246F1209-918B-4509-9CC3-6C443AED67E4}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOMAIN", "DOMAIN", "{F301A9D8-09F0-47D9-986C-447E1BDB98C8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "APPLICATION", "APPLICATION", "{8134B867-174B-4505-9781-8C8D164C5C05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "INFRASTRUCTURE", "INFRASTRUCTURE", "{B632E6C8-EDF9-4AF3-BE39-51D2A3017C0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.Application", "PersonalFinance.Identity.Application\PersonalFinance.Identity.Application.csproj", "{5C293FF3-937A-40F9-92D5-D1AEC40AF1A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.Domain", "PersonalFinance.Identity.Domain\PersonalFinance.Identity.Domain.csproj", "{6421CF6D-D452-4686-8DD2-DCBB89AD1A42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.Infrastructure", "PersonalFinance.Identity.Infrastructure\PersonalFinance.Identity.Infrastructure.csproj", "{47338F45-DCC6-4693-9D94-663645EB597A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TESTS", "TESTS", "{606797C1-1AD8-462B-A0ED-010B51C7CD12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.UnitTests", "PersonalFinance.Identity.UnitTests\PersonalFinance.Identity.UnitTests.csproj", "{6774DF14-B35A-489E-A1A6-9BC039814FF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.IntegrationTests", "PersonalFinance.Identity.IntegrationTests\PersonalFinance.Identity.IntegrationTests.csproj", "{FD5B50EE-5583-41D3-9EC2-6C6F76967411}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HOST", "HOST", "{120D3DB6-58E7-4FED-9007-A867B9952033}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.Host", "PersonalFinance.Identity.Host\PersonalFinance.Identity.Host.csproj", "{43392F5A-CF67-4A90-8023-A5040EC2F88B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersonalFinance.Identity.Api", "PersonalFinance.Identity.Api\PersonalFinance.Identity.Api.csproj", "{DC82E723-BB7D-41A8-A45A-91375604E035}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +35,46 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{246F1209-918B-4509-9CC3-6C443AED67E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{246F1209-918B-4509-9CC3-6C443AED67E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{246F1209-918B-4509-9CC3-6C443AED67E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{246F1209-918B-4509-9CC3-6C443AED67E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C293FF3-937A-40F9-92D5-D1AEC40AF1A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C293FF3-937A-40F9-92D5-D1AEC40AF1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C293FF3-937A-40F9-92D5-D1AEC40AF1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C293FF3-937A-40F9-92D5-D1AEC40AF1A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6421CF6D-D452-4686-8DD2-DCBB89AD1A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6421CF6D-D452-4686-8DD2-DCBB89AD1A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6421CF6D-D452-4686-8DD2-DCBB89AD1A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6421CF6D-D452-4686-8DD2-DCBB89AD1A42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47338F45-DCC6-4693-9D94-663645EB597A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47338F45-DCC6-4693-9D94-663645EB597A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47338F45-DCC6-4693-9D94-663645EB597A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47338F45-DCC6-4693-9D94-663645EB597A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6774DF14-B35A-489E-A1A6-9BC039814FF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6774DF14-B35A-489E-A1A6-9BC039814FF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6774DF14-B35A-489E-A1A6-9BC039814FF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6774DF14-B35A-489E-A1A6-9BC039814FF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD5B50EE-5583-41D3-9EC2-6C6F76967411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD5B50EE-5583-41D3-9EC2-6C6F76967411}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD5B50EE-5583-41D3-9EC2-6C6F76967411}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD5B50EE-5583-41D3-9EC2-6C6F76967411}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43392F5A-CF67-4A90-8023-A5040EC2F88B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43392F5A-CF67-4A90-8023-A5040EC2F88B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43392F5A-CF67-4A90-8023-A5040EC2F88B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43392F5A-CF67-4A90-8023-A5040EC2F88B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC82E723-BB7D-41A8-A45A-91375604E035}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC82E723-BB7D-41A8-A45A-91375604E035}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC82E723-BB7D-41A8-A45A-91375604E035}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC82E723-BB7D-41A8-A45A-91375604E035}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C293FF3-937A-40F9-92D5-D1AEC40AF1A5} = {8134B867-174B-4505-9781-8C8D164C5C05}
+		{6421CF6D-D452-4686-8DD2-DCBB89AD1A42} = {F301A9D8-09F0-47D9-986C-447E1BDB98C8}
+		{47338F45-DCC6-4693-9D94-663645EB597A} = {B632E6C8-EDF9-4AF3-BE39-51D2A3017C0C}
+		{6774DF14-B35A-489E-A1A6-9BC039814FF0} = {606797C1-1AD8-462B-A0ED-010B51C7CD12}
+		{FD5B50EE-5583-41D3-9EC2-6C6F76967411} = {606797C1-1AD8-462B-A0ED-010B51C7CD12}
+		{43392F5A-CF67-4A90-8023-A5040EC2F88B} = {120D3DB6-58E7-4FED-9007-A867B9952033}
+		{DC82E723-BB7D-41A8-A45A-91375604E035} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D937CA6D-59B8-49AF-BB36-658495D8C545}
