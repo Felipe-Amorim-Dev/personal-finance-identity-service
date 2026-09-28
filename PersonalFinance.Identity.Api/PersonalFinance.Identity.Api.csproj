@@ -12,6 +12,11 @@
   </ItemGroup>
 
   <ItemGroup>
+	<FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+
+	<ItemGroup>
     <ProjectReference Include="..\PersonalFinance.Identity.Application\PersonalFinance.Identity.Application.csproj" />
   </ItemGroup>
 

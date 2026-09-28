@@ -17,5 +17,7 @@ namespace PersonalFinance.Identity.Application.DTOs
         public EnderecoDto Endereco { get; set; } = null!;
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+        public bool EmailConfirmed { get; set; }
+        public string Role { get; set; } = null!;
     }
 }

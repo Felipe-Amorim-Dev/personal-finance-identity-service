@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalFinance.Identity.Domain.Entities;
+using PersonalFinance.Identity.Infrastructure.Outbox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,10 @@ namespace PersonalFinance.Identity.Infrastructure.Configurations
 
         public DbSet<User> Users => Set<User>();
         public DbSet<Endereco> Enderecos => Set<Endereco>();
+        public DbSet<OutboxMessage> OutboxMessages => Set<OutboxMessage>();
+        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+        public DbSet<PasswordResetToken> PasswordResetTokens => Set<PasswordResetToken>();
+        public DbSet<EmailConfirmationToken> EmailConfirmationTokens => Set<EmailConfirmationToken>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,4 +30,4 @@ namespace PersonalFinance.Identity.Infrastructure.Configurations
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(IdentityDbContext).Assembly);
         }
     }
-}
+}   

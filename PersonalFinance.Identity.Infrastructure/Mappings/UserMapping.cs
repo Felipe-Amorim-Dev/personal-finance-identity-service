@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PersonalFinance.Identity.Domain.Enums;
 
 namespace PersonalFinance.Identity.Infrastructure.Mappings
 {
@@ -38,6 +39,14 @@ namespace PersonalFinance.Identity.Infrastructure.Mappings
             builder.HasIndex(x => x.Email).IsUnique();
 
             builder.HasOne(x => x.Endereco).WithOne().HasForeignKey<Endereco>("UserId").IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+            builder.Ignore(x => x.DomainEvents);
+
+            builder.Property(x => x.EmailConfirmed).IsRequired().HasDefaultValue(false);
+
+            builder.Property(x => x.Role).HasConversion<int>().IsRequired().HasDefaultValue(UserRole.User);
+
+            builder.Property(x => x.TokenVersion).IsRequired().HasDefaultValue(1);
         }
     }
 }

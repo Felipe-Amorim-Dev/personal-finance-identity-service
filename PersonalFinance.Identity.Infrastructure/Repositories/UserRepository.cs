@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PersonalFinance.Identity.Domain.Entities;
+using PersonalFinance.Identity.Domain.Enums;
 using PersonalFinance.Identity.Domain.Interfaces;
 using PersonalFinance.Identity.Infrastructure.Configurations;
 using System;
@@ -51,6 +52,11 @@ namespace PersonalFinance.Identity.Infrastructure.Repositories
             _context.Users.Remove(user);
 
             return Task.CompletedTask;
+        }
+
+        public async Task<bool> ExisteRoleAsync(UserRole role, CancellationToken cancellationToken = default)
+        {
+            return await _context.Users.AnyAsync(x => x.Role == role, cancellationToken);
         }
     }
 }

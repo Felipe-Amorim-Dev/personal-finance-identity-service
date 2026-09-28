@@ -37,5 +37,18 @@ namespace PersonalFinance.Identity.Domain.Entities
             Pais = pais;
             CreatedAt = DateTime.UtcNow;
         }
+
+        public void Update(string logradouro, string numero, string? complemento, string bairro, string cidade, string estado, string cep, string pais)
+        {
+            Logradouro = logradouro;
+            Numero = numero;
+            Complemento = complemento;
+            Bairro = bairro;
+            Cidade = cidade;
+            Estado = estado;
+            Cep = cep;
+            Pais = pais;
+            UpdatedAt = DateTime.UtcNow;
+        }
     }
 }
