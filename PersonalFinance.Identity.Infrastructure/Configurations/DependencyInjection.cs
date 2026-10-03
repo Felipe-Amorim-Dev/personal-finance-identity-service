@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalFinance.Identity.Domain.Interfaces;
+using PersonalFinance.Identity.Infrastructure.HealthChecks;
 using PersonalFinance.Identity.Infrastructure.Outbox;
 using PersonalFinance.Identity.Infrastructure.Repositories;
 using System;
@@ -24,7 +25,7 @@ namespace PersonalFinance.Identity.Infrastructure.Configurations
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddSingleton<IOutboxPublisher>(new RabbitMqOutboxPublisher(rabbitMqConnectionString));
-            services.AddHostedService<OutboxProcessor>();
+            services.AddHostedService<OutboxProcessor>();            
 
             return services;
         }

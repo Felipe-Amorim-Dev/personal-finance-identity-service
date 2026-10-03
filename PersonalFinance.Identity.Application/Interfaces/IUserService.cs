@@ -16,5 +16,6 @@ namespace PersonalFinance.Identity.Application.Interfaces
         Task<bool> ChangePasswordAsync(Guid id, ChangePasswordDto dto, CancellationToken cancellationToken = default);
         Task<bool> DeactivateAsync(Guid id, CancellationToken cancellationToken = default);
         Task<bool> ChangeRoleAsync(Guid userId, ChangeUserRoleDto dto, CancellationToken cancellationToken = default);
+        Task<PagedResultDto<UserDto>> GetPagedAsync(UserFilterDto filter, CancellationToken cancellationToken = default);
     }
 }

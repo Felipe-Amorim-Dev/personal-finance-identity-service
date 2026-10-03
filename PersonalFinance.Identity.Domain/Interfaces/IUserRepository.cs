@@ -17,5 +17,6 @@ namespace PersonalFinance.Identity.Domain.Interfaces
         Task AtualizarAsync(User user, CancellationToken cancellationToken = default);
         Task RemoverAsync(User user, CancellationToken cancellationToken = default);
         Task<bool> ExisteRoleAsync(UserRole role, CancellationToken cancellationToken = default);
+        Task<(IReadOnlyList<User> Items, int TotalCount)> ObterPaginadoAsync(int page, int pageSize, string? search, UserRole? role, bool? isActive, bool? emailConfirmed, CancellationToken cancellationToken = default);
     }
 }

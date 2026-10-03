@@ -187,6 +187,40 @@ namespace PersonalFinance.Identity.Application.Services
             return true;
         }
 
+        public async Task<PagedResultDto<UserDto>> GetPagedAsync(UserFilterDto filter, CancellationToken cancellationToken = default)
+        {
+            UserRole? role = null;
+
+            if (!string.IsNullOrWhiteSpace(filter.Role))
+            {
+                if (!Enum.TryParse<UserRole>(filter.Role, true, out var parsedRole))
+                {
+                    throw new DomainException("A role informada é inválida.");
+                }
+
+                if (!Enum.IsDefined(parsedRole))
+                {
+                    throw new DomainException("A role informada é inválida.");
+                }
+
+                role = parsedRole;
+            }
+
+            var page = Math.Max(filter.Page, 1);
+            var pageSize = Math.Clamp(filter.PageSize, 1, 100);
+
+            var result = await _userRepository.ObterPaginadoAsync(page, pageSize, filter.Search, role, filter.IsActive, filter.EmailConfirmed, cancellationToken);
+
+            return new PagedResultDto<UserDto>
+            {
+                Items = result.Items.Select(MapToDto).ToList(),
+                Page = page,
+                PageSize = pageSize,
+                TotalItems = result.TotalCount,
+                TotalPages = (int)Math.Ceiling(result.TotalCount / (double)pageSize)
+            };
+        }
+
         #region Metodos Privados
         private static UserDto MapToDto(User user)
         {

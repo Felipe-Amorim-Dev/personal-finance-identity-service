@@ -22,6 +22,14 @@ namespace PersonalFinance.Identity.Api.Controllers
             _userService = userService;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<PagedResultDto<UserDto>>> GetPaged([FromQuery] UserFilterDto filter, CancellationToken cancellationToken)
+        {
+            var result = await _userService.GetPagedAsync(filter, cancellationToken);
+
+            return Ok(result);
+        }
+
         [HttpGet("{id:guid}")]
         public async Task<ActionResult<UserDto>> GetById(Guid id, CancellationToken cancellationToken)
         {

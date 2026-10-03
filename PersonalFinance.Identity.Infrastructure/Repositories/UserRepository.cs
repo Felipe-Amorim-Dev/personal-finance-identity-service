@@ -58,5 +58,49 @@ namespace PersonalFinance.Identity.Infrastructure.Repositories
         {
             return await _context.Users.AnyAsync(x => x.Role == role, cancellationToken);
         }
+
+        public async Task<(IReadOnlyList<User> Items, int TotalCount)> ObterPaginadoAsync(int page, int pageSize, string? search, UserRole? role, bool? isActive, bool? emailConfirmed, CancellationToken cancellationToken = default)
+        {
+            var query = _context.Users
+                .Include(x => x.Endereco)
+                .AsNoTracking()
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(search))
+            {
+                var term = search.Trim();
+
+                query = query.Where(x =>
+                    EF.Functions.Like(x.Nome, $"%{term}%") ||
+                    EF.Functions.Like(x.Sobrenome, $"%{term}%") ||
+                    EF.Functions.Like(x.Email, $"%{term}%"));
+            }
+
+            if (role.HasValue)
+            {
+                query = query.Where(x => x.Role == role.Value);
+            }
+
+            if (isActive.HasValue)
+            {
+                query = query.Where(x => x.IsActive == isActive.Value);
+            }
+
+            if (emailConfirmed.HasValue)
+            {
+                query = query.Where(x => x.EmailConfirmed == emailConfirmed.Value);
+            }
+
+            var totalCount = await query.CountAsync(cancellationToken);
+
+            var items = await query
+                .OrderBy(x => x.Nome)
+                .ThenBy(x => x.Sobrenome)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync(cancellationToken);
+
+            return (items, totalCount);
+        }
     }
 }

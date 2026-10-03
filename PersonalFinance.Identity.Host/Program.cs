@@ -8,9 +8,12 @@ using Microsoft.IdentityModel.Tokens;
 using System.Threading.RateLimiting;
 using PersonalFinance.Identity.Api.Services;
 using PersonalFinance.Identity.Application.Interfaces;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Text.Json;
 using System.Text;
-using PersonalFinance.Identity.Application.Interfaces;
 using System.Security.Claims;
+using PersonalFinance.Identity.Infrastructure.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -65,6 +68,8 @@ if (string.IsNullOrWhiteSpace(rabbitMqConnectionString))
 
 builder.Services.AddApplication(jwtSecretKey, jwtIssuer, jwtAudience, jwtExpirationMinutes, emailSettings);
 builder.Services.AddInfrastructure(connectionString, rabbitMqConnectionString);
+builder.Services.AddSingleton(new RabbitMqHealthCheck(rabbitMqConnectionString));
+builder.Services.AddHealthChecks().AddCheck<DatabaseHealthCheck>("mysql", tags: new[] { "ready" });
 
 builder.Services.AddControllers().AddApplicationPart(typeof(ApiAssemblyReference).Assembly);
 
@@ -167,6 +172,33 @@ app.UseHttpsRedirection();
 app.UseRateLimiter();
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.MapHealthChecks("/health/live", new HealthCheckOptions
+{
+    Predicate = _ => false
+});
+
+app.MapHealthChecks("/health/ready", new HealthCheckOptions
+{
+    Predicate = healthCheck => healthCheck.Tags.Contains("ready"),
+    ResponseWriter = async (context, report) =>
+    {
+        context.Response.ContentType = "application/json";
+
+        var response = new
+        {
+            status = report.Status.ToString(),
+            checks = report.Entries.Select(entry => new
+            {
+                name = entry.Key,
+                status = entry.Value.Status.ToString(),
+                description = entry.Value.Description
+            })
+        };
+
+        await context.Response.WriteAsync(JsonSerializer.Serialize(response));
+    }
+});
 
 app.MapControllers();
 
