@@ -51,6 +51,21 @@ dotnet test PersonalFinance.Identity.sln
 
 - [personal-finance-platform](https://github.com/Felipe-Amorim-Dev/personal-finance-platform) — Plataforma financeira principal
 
+## 🏗️ Arquitetura e componentes
+
+- Host: composição, middleware, OpenAPI, rate limiting e health checks.
+- Api: controllers Auth, User e AdminUser.
+- Application: DTOs, casos de uso, serviços de autenticação, e-mail e tokens.
+- Domain: entidades User, RefreshToken, PasswordResetToken, eventos e contratos.
+- Infrastructure: EF Core/Pomelo MySQL, repositórios, migrations e outbox RabbitMQ.
+
+### Fluxo técnico
+
+1. AuthController reúne login, refresh, logout, recuperação de senha e confirmação de e-mail.
+2. Tokens JWT validam issuer, audience, assinatura, expiração e versão do token registrada no usuário.
+3. AdminUserController utiliza política AdminOnly; limites de requisição protegem as rotas de autenticação.
+4. Outbox persiste mensagens e realiza publicação assíncrona via processador dedicado.
+
 <a id="licenca"></a>
 ## 📄 Licença
 
