@@ -1,5 +1,10 @@
 # Personal Finance — Identity Service
 
+[![Compilação e testes](https://github.com/Felipe-Amorim-Dev/personal-finance-identity-service/actions/workflows/ci.yml/badge.svg)](https://github.com/Felipe-Amorim-Dev/personal-finance-identity-service/actions/workflows/ci.yml)
+
+> O workflow confere compilação e testes encontrados. A execução local de MySQL, RabbitMQ e SMTP ainda precisa de validação independente.
+
+
 **Status: in active development / Em desenvolvimento.** An evolving .NET identity/authentication service for the [Personal Finance Platform](https://github.com/Felipe-Amorim-Dev/personal-finance-platform). Not production-certified.
 
 ## Implemented components visible in the repository
