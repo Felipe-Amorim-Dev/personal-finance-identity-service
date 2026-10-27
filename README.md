@@ -1,49 +1,66 @@
-# Personal Finance — Identity Service
+<h1 align="center">🔐 Personal Finance — Identity Service</h1>
 
-[![Compilação e testes](https://github.com/Felipe-Amorim-Dev/personal-finance-identity-service/actions/workflows/ci.yml/badge.svg)](https://github.com/Felipe-Amorim-Dev/personal-finance-identity-service/actions/workflows/ci.yml)
+<p align="center"><em>Identidade e autenticação para a plataforma financeira.</em></p>
 
-> O workflow confere compilação e testes encontrados. A execução local de MySQL, RabbitMQ e SMTP ainda precisa de validação independente.
+<p align="center">🇧🇷 Português | 🇺🇸 <a href="README.en.md">English</a></p>
 
+<p align="center"><img src="https://img.shields.io/badge/licen%C3%A7a-MIT-006bed?style=flat-square" alt="MIT" /> <img src="https://img.shields.io/github/last-commit/Felipe-Amorim-Dev/personal-finance-identity-service?style=flat-square&color=006bed" alt="Last commit" /></p>
 
-**Status: in active development / Em desenvolvimento.** An evolving .NET identity/authentication service for the [Personal Finance Platform](https://github.com/Felipe-Amorim-Dev/personal-finance-platform). Not production-certified.
-
-## Implemented components visible in the repository
-- Separate `Api`, `Application`, `Domain`, `Infrastructure` and `Host` projects.
-- JWT validation and authentication middleware in the host.
-- MySQL-backed persistence configuration, rate limiting and health-check registration.
-- Email-related configuration and an outbox processing component.
-- Unit and integration **test projects** are present; existence of projects alone does not establish passing tests or meaningful coverage.
-
-## Architecture
-
-```text
-PersonalFinance.Identity.Host    application startup, middleware, composition
-PersonalFinance.Identity.Api     HTTP interface
-PersonalFinance.Identity.Application  use cases, application services, contracts
-PersonalFinance.Identity.Domain       domain entities and abstractions
-PersonalFinance.Identity.Infrastructure persistence, messaging, integration
-PersonalFinance.Identity.UnitTests / IntegrationTests  test projects
-```
-
-## Local development
-
-**Prerequisites:** compatible .NET SDK, MySQL and RabbitMQ for the configured integration paths, plus email infrastructure or suitable development configuration.
-
-1. Clone the repository.
-2. Provide **local, noncommitted** configuration for `ConnectionStrings:DefaultConnection`, `ConnectionStrings:RabbitMq`, `Jwt:SecretKey`, `Jwt:Issuer`, `Jwt:Audience`, and `Email` settings. `Program.cs` checks required settings at startup.
-3. Review the application settings and connection strings before running migrations.
-4. Run `dotnet restore PersonalFinance.Identity.sln` and `dotnet build PersonalFinance.Identity.sln`.
-5. Run `dotnet test PersonalFinance.Identity.sln`. Confirm actual test discovery/results before reporting coverage.
-6. Start the host with `dotnet run --project PersonalFinance.Identity.Host` only after configuring required services.
-
-**Security:** never commit credentials or reuse example keys in a deployed environment. JWT, outbox processing and health checks require integration and operational testing before production.
-
-## Roadmap
-- Add and run meaningful application/domain/integration tests.
-- Validate migrations and deployment configuration end to end.
-- Evaluate concurrency, idempotency and retry handling for the outbox.
-- Configure CI and review results.
+<p align="center"><a href="#sobre">Sobre</a> • <a href="#tecnologias">Tecnologias</a> • <a href="#como-rodar">Como rodar</a> • <a href="#licenca">Licença</a> • <a href="#autor">Autor</a></p>
 
 ---
 
-**PT-BR:** Microsserviço de identidade em evolução, com projetos separados por responsabilidade e infraestrutura de persistência/mensageria. As funcionalidades presentes no código não significam validação de produção; testes e integração continuam necessários.
+<a id="sobre"></a>
+## 📖 Sobre
+
+Serviço de identidade em .NET 9 dividido em Host, API, Application, Domain e Infrastructure. Integra autenticação JWT, persistência MySQL com Pomelo EF Core, mensageria RabbitMQ e processamento de outbox.
+
+## ✨ Funcionalidades
+
+- Autenticação e validação JWT
+- Persistência MySQL
+- Processamento de mensagens com outbox
+- Projetos de testes unitários e de integração
+
+## 🛠️ Tecnologias
+
+![C#](https://img.shields.io/badge/C%23-006bed?style=for-the-badge) ![.NET 9](https://img.shields.io/badge/.NET_9-006bed?style=for-the-badge) ![MySQL](https://img.shields.io/badge/MySQL-006bed?style=for-the-badge) ![EF Core 9.0.20](https://img.shields.io/badge/EF_Core_9.0.20-006bed?style=for-the-badge) ![Pomelo 9](https://img.shields.io/badge/Pomelo_9-006bed?style=for-the-badge) ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-006bed?style=for-the-badge)
+
+## 📦 Pré-requisitos
+
+SDK .NET 9 e configurações locais de MySQL, JWT, RabbitMQ e e-mail.
+
+<a id="como-rodar"></a>
+## 🚀 Como rodar
+
+```bash
+git clone https://github.com/Felipe-Amorim-Dev/personal-finance-identity-service.git
+cd personal-finance-identity-service
+dotnet restore PersonalFinance.Identity.sln
+dotnet build PersonalFinance.Identity.sln
+dotnet run --project PersonalFinance.Identity.Host
+```
+
+## 🧪 Testes
+
+```bash
+dotnet test PersonalFinance.Identity.sln
+```
+
+## 🔗 Repositórios relacionados
+
+- [personal-finance-platform](https://github.com/Felipe-Amorim-Dev/personal-finance-platform) — Plataforma financeira principal
+
+<a id="licenca"></a>
+## 📄 Licença
+
+Distribuído sob a [licença MIT](LICENSE).
+
+<a id="autor"></a>
+## 👤 Autor
+
+**Felipe Figueiredo Amorim** — Desenvolvedor Full Stack.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Felipe%20Amorim-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/felipe-amorim-dev/) [![E-mail](https://img.shields.io/badge/E--mail-contato-006bed?style=for-the-badge)](mailto:felipe.f.amorim@outlook.com)
+
+<p align="center"><strong>Obrigado por visitar! / Thanks for visiting!</strong></p>
