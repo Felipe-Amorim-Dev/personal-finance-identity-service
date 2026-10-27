@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
 using PersonalFinance.Identity.Infrastructure.Configurations;
 using System;
 using System.Collections.Generic;
