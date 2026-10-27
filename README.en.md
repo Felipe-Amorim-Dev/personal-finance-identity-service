@@ -51,6 +51,37 @@ dotnet test PersonalFinance.Identity.sln
 
 - [personal-finance-platform](https://github.com/Felipe-Amorim-Dev/personal-finance-platform) — Plataforma financeira principal
 
+## 🏗️ Architecture and responsibilities
+
+| Project | Purpose |
+| --- | --- |
+| `PersonalFinance.Identity.Host` | Application startup, middleware, OpenAPI, rate limiting, authentication and health checks |
+| `PersonalFinance.Identity.Api` | Auth, user and administration HTTP controllers |
+| `PersonalFinance.Identity.Application` | DTOs, application services, authentication, token lifecycle and email flows |
+| `PersonalFinance.Identity.Domain` | User and token entities, business abstractions, domain events |
+| `PersonalFinance.Identity.Infrastructure` | MySQL persistence through EF Core/Pomelo, repositories, migrations and RabbitMQ outbox |
+| `PersonalFinance.Identity.UnitTests` / `IntegrationTests` | Automated test projects |
+
+### Authentication and messaging workflows
+
+- `/api/auth/login` processes credentials, while refresh, logout and logout-all manage sessions.
+- Password reset, email confirmation and resend operations belong to `AuthController`.
+- JWT validation checks signature, issuer, audience, expiration and stored token version.
+- `AdminUserController` requires the `AdminOnly` authorization policy.
+- The transactional outbox persists events for asynchronous delivery by `OutboxProcessor` and `RabbitMqOutboxPublisher`.
+- `/health/live` and `/health/ready` expose application health endpoints.
+
+### Local configuration
+
+Configure `ConnectionStrings:DefaultConnection`, `ConnectionStrings:RabbitMq`, `Jwt:SecretKey`, `Jwt:Issuer`, `Jwt:Audience` and `Email` settings through local secrets or environment variables.
+
+```bash
+dotnet restore PersonalFinance.Identity.sln
+dotnet build PersonalFinance.Identity.sln
+dotnet test PersonalFinance.Identity.sln
+dotnet run --project PersonalFinance.Identity.Host
+```
+
 <a id="licenca"></a>
 ## 📄 License
 
